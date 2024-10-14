@@ -1,10 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <Platforms>x64;ARM64</Platforms>
     <PlatformTarget>$(Platform)</PlatformTarget>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,5 +21,28 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+  <Target Name="Movefiles"
+        AfterTargets="Build">
+    <ItemGroup>
+      <MySourceFiles Include="./plugin.json" />
+      <MySourceFiles Include="$(OutputPath)Community.PowerToys.Run.Plugin.JetbrainsProjects.dll" />
+      <MySourceFiles Include="$(OutputPath)Community.PowerToys.Run.Plugin.JetbrainsProjects.deps.json" />
+      <ImagesFile Include="$(OutputPath)Images\*.*" />
+      <InstallBashFiles Include="./install.bat" />
+    </ItemGroup>
+    <Copy SourceFiles="@(MySourceFiles)"
+          DestinationFolder="./bin/output_$(Platform)/JetbrainsProjects" />
+    <Copy SourceFiles="@(ImagesFile)"
+          DestinationFolder="./bin/output_$(Platform)/JetbrainsProjects/Images" />
+    <Copy SourceFiles="@(InstallBashFiles)"
+          DestinationFolder="./bin/output_$(Platform)" />
+  </Target>
+  <Target Name="ZipOutput"
+          AfterTargets="Pack">
+    <ZipDirectory SourceDirectory="./bin/output_$(Platform)"
+                  DestinationFile="./bin/JetbrainsProjects_$(Platform).zip"
+                  Overwrite="true" />
+  </Target>
 
 </Project>
