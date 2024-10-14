@@ -1,4 +1,4 @@
-name: Build on release
+﻿name: Build on release
 on:
   release:
     types: created
@@ -26,11 +26,11 @@ jobs:
         with:
           repo_token: ${{secrets.GITHUB_TOKEN}}
           file: Community.PowerToys.Run.Plugin.JetbrainsProjects\bin\JetbrainsProjects_x64.zip
-          asset_name: JetbrainsProjects_x64.zip
+          asset_name: JetbrainsProjects-${{ github.event.release.tag_name }}-x64.zip
 
       - name: Upload ARM64 To Release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{secrets.GITHUB_TOKEN}}
           file: Community.PowerToys.Run.Plugin.JetbrainsProjects\bin\JetbrainsProjects_ARM64.zip
-          asset_name: JetbrainsProjects_ARM64.zip
+          asset_name: JetbrainsProjects-${{ github.event.release.tag_name }}-arm64.zip
