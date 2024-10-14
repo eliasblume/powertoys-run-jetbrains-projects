@@ -6,7 +6,7 @@
   "Author": "eliasblume",
   "Version": "0.1.0",
   "Language": "csharp",
-  "Website": "https://github.com/hlaueriksson/Community.PowerToys.Run.Plugin.JetbrainsProjects",
+  "Website": "https://github.com/eliasblume/powertoys-run-jetbrains-projects",
   "ExecuteFileName": "Community.PowerToys.Run.Plugin.JetbrainsProjects.dll",
   "IcoPathDark": "Images\\jetbrainsprojects.dark.png",
   "IcoPathLight": "Images\\jetbrainsprojects.light.png",

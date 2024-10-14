@@ -55,7 +55,7 @@ namespace Community.PowerToys.Run.Plugin.JetbrainsProjects.UnitTests
                     System.Diagnostics.Debug.WriteLine("-------");
                     System.Diagnostics.Debug.WriteLine(project.Name);
                     System.Diagnostics.Debug.WriteLine(project.Path);
-                    System.Diagnostics.Debug.WriteLine(project.LastOpened.Humanize());
+                    System.Diagnostics.Debug.WriteLine(project.LastOpened);
                     System.Diagnostics.Debug.WriteLine(project.CurrentFile);
                 }
             }
