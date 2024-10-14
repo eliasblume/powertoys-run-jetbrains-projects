@@ -29,7 +29,6 @@
       <MySourceFiles Include="$(OutputPath)Community.PowerToys.Run.Plugin.JetbrainsProjects.dll" />
       <MySourceFiles Include="$(OutputPath)Community.PowerToys.Run.Plugin.JetbrainsProjects.deps.json" />
       <ImagesFile Include="$(OutputPath)Images\*.*" />
-      <InstallBashFiles Include="./install.bat" />
     </ItemGroup>
     <Copy SourceFiles="@(MySourceFiles)"
           DestinationFolder="./bin/output_$(Platform)/JetbrainsProjects" />

@@ -9,7 +9,7 @@ Simple [PowerToys Run](https://learn.microsoft.com/windows/powertoys/run) plugin
 
 - Download the [latest release](https://github.com/eliasblume/powertoys-run-jetbrains-projects/releases) by selecting the architecture that matches your machine: `x64` (more common) or `ARM64`
 - Close PowerToys
-- Extract the archive to `%LOCALAPPDATA%\Microsoft\PowerToys\PowerToys Run\Plugins` or click the `install.bat` file
+- Extract the archive to `%LOCALAPPDATA%\Microsoft\PowerToys\PowerToys Run\Plugins`
 - Open PowerToys
 
 ## Usage
