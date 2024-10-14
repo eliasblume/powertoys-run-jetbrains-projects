@@ -27,11 +27,11 @@ jobs:
         with:
           repo_token: ${{secrets.GITHUB_TOKEN}}
           file: bin/JetbrainsProjects_x64.zip
-          asset_name: JetbrainsProjects_x64.zip
+          asset_name: Community.PowerToys.Run.Plugin.JetbrainsProjects\bin\JetbrainsProjects_x64.zip
 
       - name: Upload ARM64 To Release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{secrets.GITHUB_TOKEN}}
-          file: bin/JetbrainsProjects_ARM64.zip
+          file: Community.PowerToys.Run.Plugin.JetbrainsProjects\bin\JetbrainsProjects_ARM64.zip
           asset_name: JetbrainsProjects_ARM64.zip
