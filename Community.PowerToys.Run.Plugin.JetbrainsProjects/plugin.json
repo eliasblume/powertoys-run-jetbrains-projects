@@ -1,0 +1,14 @@
+{
+  "ID": "188FA30869F0400DAE569461B2DA6D25",
+  "ActionKeyword": "jetbrainsprojects",
+  "IsGlobal": false,
+  "Name": "JetbrainsProjects",
+  "Author": "eliasblume",
+  "Version": "0.1.0",
+  "Language": "csharp",
+  "Website": "https://github.com/hlaueriksson/Community.PowerToys.Run.Plugin.JetbrainsProjects",
+  "ExecuteFileName": "Community.PowerToys.Run.Plugin.JetbrainsProjects.dll",
+  "IcoPathDark": "Images\\jetbrainsprojects.dark.png",
+  "IcoPathLight": "Images\\jetbrainsprojects.light.png",
+  "DynamicLoading": false
+}

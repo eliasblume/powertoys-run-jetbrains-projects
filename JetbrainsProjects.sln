@@ -1,0 +1,40 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Community.PowerToys.Run.Plugin.JetbrainsProjects", "Community.PowerToys.Run.Plugin.JetbrainsProjects\Community.PowerToys.Run.Plugin.JetbrainsProjects.csproj", "{7CD3B626-F6A3-496C-868F-B7F5F8E90BDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Community.PowerToys.Run.Plugin.JetbrainsProjects.UnitTests", "Community.PowerToys.Run.Plugin.JetbrainsProjects.UnitTests\Community.PowerToys.Run.Plugin.JetbrainsProjects.UnitTests.csproj", "{312AA3BA-1417-47EE-B2E6-07679937149D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM64 = Debug|ARM64
+		Debug|x64 = Debug|x64
+		Release|ARM64 = Release|ARM64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CD3B626-F6A3-496C-868F-B7F5F8E90BDC}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{7CD3B626-F6A3-496C-868F-B7F5F8E90BDC}.Debug|ARM64.Build.0 = Debug|ARM64
+		{7CD3B626-F6A3-496C-868F-B7F5F8E90BDC}.Debug|x64.ActiveCfg = Debug|x64
+		{7CD3B626-F6A3-496C-868F-B7F5F8E90BDC}.Debug|x64.Build.0 = Debug|x64
+		{7CD3B626-F6A3-496C-868F-B7F5F8E90BDC}.Release|ARM64.ActiveCfg = Release|ARM64
+		{7CD3B626-F6A3-496C-868F-B7F5F8E90BDC}.Release|ARM64.Build.0 = Release|ARM64
+		{7CD3B626-F6A3-496C-868F-B7F5F8E90BDC}.Release|x64.ActiveCfg = Release|x64
+		{7CD3B626-F6A3-496C-868F-B7F5F8E90BDC}.Release|x64.Build.0 = Release|x64
+		{312AA3BA-1417-47EE-B2E6-07679937149D}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{312AA3BA-1417-47EE-B2E6-07679937149D}.Debug|ARM64.Build.0 = Debug|ARM64
+		{312AA3BA-1417-47EE-B2E6-07679937149D}.Debug|x64.ActiveCfg = Debug|x64
+		{312AA3BA-1417-47EE-B2E6-07679937149D}.Debug|x64.Build.0 = Debug|x64
+		{312AA3BA-1417-47EE-B2E6-07679937149D}.Release|ARM64.ActiveCfg = Release|ARM64
+		{312AA3BA-1417-47EE-B2E6-07679937149D}.Release|ARM64.Build.0 = Release|ARM64
+		{312AA3BA-1417-47EE-B2E6-07679937149D}.Release|x64.ActiveCfg = Release|x64
+		{312AA3BA-1417-47EE-B2E6-07679937149D}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {11828C72-570E-45BD-BDFF-1D46D59FD808}
+	EndGlobalSection
+EndGlobal
