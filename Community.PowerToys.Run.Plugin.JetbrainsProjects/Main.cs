@@ -1,5 +1,4 @@
-﻿using Humanizer;
-using ManagedCommon;
+﻿using ManagedCommon;
 using Microsoft.PowerToys.Settings.UI.Library;
 using System;
 using System.Collections.Generic;

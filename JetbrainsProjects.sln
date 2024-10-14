@@ -2,9 +2,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Community.PowerToys.Run.Plugin.JetbrainsProjects", "Community.PowerToys.Run.Plugin.JetbrainsProjects\Community.PowerToys.Run.Plugin.JetbrainsProjects.csproj", "{7CD3B626-F6A3-496C-868F-B7F5F8E90BDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.PowerToys.Run.Plugin.JetbrainsProjects", "Community.PowerToys.Run.Plugin.JetbrainsProjects\Community.PowerToys.Run.Plugin.JetbrainsProjects.csproj", "{7CD3B626-F6A3-496C-868F-B7F5F8E90BDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Community.PowerToys.Run.Plugin.JetbrainsProjects.UnitTests", "Community.PowerToys.Run.Plugin.JetbrainsProjects.UnitTests\Community.PowerToys.Run.Plugin.JetbrainsProjects.UnitTests.csproj", "{312AA3BA-1417-47EE-B2E6-07679937149D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Community.PowerToys.Run.Plugin.JetbrainsProjects.UnitTests", "Community.PowerToys.Run.Plugin.JetbrainsProjects.UnitTests\Community.PowerToys.Run.Plugin.JetbrainsProjects.UnitTests.csproj", "{312AA3BA-1417-47EE-B2E6-07679937149D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{38468356-3559-43D5-83FC-B5D7B52930D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{A61C1E12-FE18-4E8E-8165-F829F7C6DE11}"
+	ProjectSection(SolutionItems) = preProject
+		build.yml = build.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +40,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A61C1E12-FE18-4E8E-8165-F829F7C6DE11} = {38468356-3559-43D5-83FC-B5D7B52930D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {11828C72-570E-45BD-BDFF-1D46D59FD808}
