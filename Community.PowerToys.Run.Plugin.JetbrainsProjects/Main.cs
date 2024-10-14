@@ -1,14 +1,9 @@
 ﻿using ManagedCommon;
 using Microsoft.PowerToys.Settings.UI.Library;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Windows;
+
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Xml.Linq;
+
 using Wox.Infrastructure;
 using Wox.Plugin;
 using Wox.Plugin.Logger;

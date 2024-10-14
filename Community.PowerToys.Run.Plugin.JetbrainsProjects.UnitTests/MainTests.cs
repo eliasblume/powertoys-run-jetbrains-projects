@@ -8,18 +8,18 @@ namespace Community.PowerToys.Run.Plugin.JetbrainsProjects.UnitTests
     [TestClass]
     public class JetbarinsProjectTests
     {
-        private JetbrainsProjects jetbrainsProjects;
+        private JetbrainsProjects _jetbrainsProjects;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            jetbrainsProjects = new JetbrainsProjects();
+            _jetbrainsProjects = new JetbrainsProjects();
         }
 
         [TestMethod]
         public void GetProjects_should_return_results()
         {
-            var results  = jetbrainsProjects.GetInstalledProducts();
+            var results  = _jetbrainsProjects.GetInstalledProducts();
 
             foreach (var result in results)
             {
@@ -38,7 +38,7 @@ namespace Community.PowerToys.Run.Plugin.JetbrainsProjects.UnitTests
         [TestMethod]
         public void GetProducts_should_return_results()
         {
-            var results = jetbrainsProjects.GetProducts();
+            var results = _jetbrainsProjects.GetProducts();
 
             // log the results
             foreach (var result in results)
@@ -48,7 +48,7 @@ namespace Community.PowerToys.Run.Plugin.JetbrainsProjects.UnitTests
                 System.Diagnostics.Debug.WriteLine("-------");
 
 
-                var projects = jetbrainsProjects.GetProjectsFromProduct(result);
+                var projects = _jetbrainsProjects.GetProjectsFromProduct(result);
 
                 foreach (var project in projects)
                 {

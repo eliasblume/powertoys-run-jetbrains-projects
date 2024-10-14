@@ -3,6 +3,10 @@ Set-Location $PSScriptRoot
 
 Start-Job { Stop-Process -Name PowerToys* } | Wait-Job > $null
 
+Start-Sleep -Seconds 1
+
+
+
 # change this to your PowerToys installation path
 $ptPath = 'C:\Users\elias\AppData\Local\PowerToys'
 $projectName = 'JetbrainsProjects'

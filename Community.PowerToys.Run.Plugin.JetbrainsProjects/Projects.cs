@@ -113,6 +113,8 @@ namespace Community.PowerToys.Run.Plugin.JetbrainsProjects
             {
                 projects.AddRange(GetProjectsFromProduct(product));
             }
+            
+            projects.Sort((x, y) => y.LastOpened.CompareTo(x.LastOpened));
 
             return projects;
 
