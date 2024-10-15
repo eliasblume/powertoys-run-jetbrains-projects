@@ -15,3 +15,9 @@ Simple [PowerToys Run](https://learn.microsoft.com/windows/powertoys/run) plugin
 ## Usage
 - write `jb` or search for any of your projects
 
+
+## Thanks
+
+- [Creating custom PowerToys Run plugins](https://conductofcode.io/post/creating-custom-powertoys-run-plugins/) helped me greatly to get started
+- [PowerTranslator](https://github.com/N0I0C0K/PowerTranslator) for copying GitHub actions
+

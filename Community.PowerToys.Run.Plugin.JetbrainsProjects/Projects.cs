@@ -33,7 +33,7 @@ namespace Community.PowerToys.Run.Plugin.JetbrainsProjects
     {
         private static readonly string ProgrammsDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Programs");
 
-        private ReadOnlyCollection<Product>? _products;
+        private ReadOnlyCollection<Product>? _products = new ReadOnlyCollection<Product>([]);
 
 
         public void UpdateProjects()
@@ -50,21 +50,26 @@ namespace Community.PowerToys.Run.Plugin.JetbrainsProjects
             foreach (var product in intsalledProducts)
             {
                 var xmlPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), product.ProductVendor, product.DataDirectoryName, "options", "recentProjects.xml");
-
-                if (!File.Exists(xmlPath))
+                if (File.Exists(xmlPath))
                 {
-                    xmlPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), product.ProductVendor, product.DataDirectoryName, "options", "recentSolutions.xml");
-                    if (!File.Exists(xmlPath))
+                    products.Add(new Product
                     {
-                        continue;
-                    }
+                        ProjectsXml = xmlPath,
+                        ProductInfo = product
+                    });
                 }
 
-                products.Add(new Product
+                xmlPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), product.ProductVendor, product.DataDirectoryName, "options", "recentSolutions.xml");
+                if (File.Exists(xmlPath))
                 {
-                    ProjectsXml = xmlPath,
-                    ProductInfo = product
-                });
+                    products.Add(new Product
+                    {
+                        ProjectsXml = xmlPath,
+                        ProductInfo = product
+                    });
+                }
+
+                
             }
 
             return products;
@@ -120,7 +125,7 @@ namespace Community.PowerToys.Run.Plugin.JetbrainsProjects
 
         }
 
-        public List<Project> GetProjectsFromProduct(Product product )
+        public List<Project> GetProjectsFromProduct(Product product)
         {
             var projects = new List<Project>();
 
@@ -143,19 +148,22 @@ namespace Community.PowerToys.Run.Plugin.JetbrainsProjects
 
                     projectPath = ReplaceUserHome(projectPath);
 
-                    if (!Directory.Exists(projectPath))
+                    // check if file or dir
+                    if (!File.Exists(projectPath) && !Directory.Exists(projectPath))
                     {
-                        projectPath = Path.GetDirectoryName(projectPath);
+                        continue;
                     }
 
                     var metaInfoNode = entryNode.SelectSingleNode(".//RecentProjectMetaInfo");
                     if (metaInfoNode == null) continue;
 
                     var frameTitle = metaInfoNode.Attributes?["frameTitle"]?.Value ?? Path.GetFileName(projectPath);
-                    string projectName = ExtractProjectName(frameTitle) ?? Path.GetFileName(projectPath);
-                    string currentFile = ExtractCurrentFile(frameTitle);
 
-              
+                    if (string.IsNullOrEmpty(frameTitle)) continue;
+
+                    string projectName = ExtractProjectName(frameTitle) ?? frameTitle;
+                    string? currentFile = ExtractCurrentFile(frameTitle);
+
                     var lastOpenedTimestamp = metaInfoNode.SelectSingleNode(".//option[@name='projectOpenTimestamp']")?.Attributes?["value"]?.Value;
 
                     if (!string.IsNullOrEmpty(lastOpenedTimestamp) && long.TryParse(lastOpenedTimestamp, out long timestamp))
@@ -195,7 +203,7 @@ namespace Community.PowerToys.Run.Plugin.JetbrainsProjects
             return dirName;  // Return original if no match
         }
 
-        private string? ExtractProjectName(string frameTitle)
+        private string? ExtractProjectName(string? frameTitle)
         {
             if (string.IsNullOrEmpty(frameTitle)) return null;
 
