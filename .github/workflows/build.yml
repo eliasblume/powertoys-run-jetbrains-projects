@@ -54,4 +54,5 @@ jobs:
           artifactErrorsFailBuild: true
           artifacts: 'Community.PowerToys.Run.Plugin.JetbrainsProjects\bin\*.zip'
           artifactContentType: 'application/zip'
+          bodyFile: 'Community.PowerToys.Run.Plugin.JetbrainsProjects/release.md'
             
