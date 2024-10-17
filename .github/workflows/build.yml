@@ -17,12 +17,17 @@ jobs:
           fetch-depth: 0
     
       - name: Extract version
+        id: extract_version
         run: |
           $jsonContent = Get-Content -Path "Community.PowerToys.Run.Plugin.JetbrainsProjects\plugin.json" -Raw
           $jsonObject = $jsonContent | ConvertFrom-Json
           $version = $jsonObject.Version
-          echo "VERSION=$version" >> $env:GITHUB_OUTPUT
-          echo "Extracted version: $version"
+          echo "VERSION=$version" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+          
+      - name: log version
+        run: |
+          $version = Get-Content $env:GITHUB_OUTPUT | Select-String -Pattern 'VERSION=(.*)' | ForEach-Object { $_.Matches.Groups[1].Value }
+          echo "Version: $version"
 
       - name: Package to zip
         run: |
