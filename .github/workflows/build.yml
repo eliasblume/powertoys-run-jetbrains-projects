@@ -24,10 +24,6 @@ jobs:
           $version = $jsonObject.Version
           echo "VERSION=$version" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
           
-      - name: log version
-        run: |
-          echo "Version: ${{ env.VERSION }}"
-
       - name: Package to zip
         run: |
           cd Community.PowerToys.Run.Plugin.JetbrainsProjects
@@ -36,8 +32,9 @@ jobs:
           
       - name: rename zips
         run: |
-          Rename-Item -Path Community.PowerToys.Run.Plugin.JetbrainsProjects\bin\JetbrainsProjects_x64.zip -NewName "JetbrainsProjects-${{ env.VERSION }}-x64.zip"
-          Rename-Item -Path Community.PowerToys.Run.Plugin.JetbrainsProjects\bin\JetbrainsProjects_ARM64.zip -NewName "JetbrainsProjects-${{ env.VERSION }}-arm64.zip"
+          cd Community.PowerToys.Run.Plugin.JetbrainsProjects
+          Rename-Item -Path bin\JetbrainsProjects_x64.zip -NewName "JetbrainsProjects-${{ env.VERSION }}-x64.zip"
+          Rename-Item -Path bin\JetbrainsProjects_ARM64.zip -NewName "JetbrainsProjects-${{ env.VERSION }}-arm64.zip"
  
       - uses: ncipollo/release-action@v1
         with:
@@ -46,6 +43,7 @@ jobs:
           allowUpdates: true
           artifactErrorsFailBuild: true
           artifacts: 'Community.PowerToys.Run.Plugin.JetbrainsProjects\bin\*.zip'
+          artifactContentType: 'application/zip'
             
             
       
