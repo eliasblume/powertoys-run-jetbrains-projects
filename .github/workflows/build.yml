@@ -2,6 +2,9 @@
 on:
   release:
     types: created
+  # manually trigger the workflow
+  workflow_dispatch:
+    
 
 jobs:
   build:
@@ -15,22 +18,38 @@ jobs:
 
       - name: go to the project folder
         run: cd Community.PowerToys.Run.Plugin.JetbrainsProjects
+        
+      - name: Extract version
+        id: get_version
+        run: |
+          $jsonContent = Get-Content -Path "plugin.json" -Raw
+          $jsonObject = $jsonContent | ConvertFrom-Json
+          $version = $jsonObject.Version
+          echo "VERSION=$version" >> $env:GITHUB_OUTPUT
+          echo "Extracted version: $version"
 
-      - name: Package
+      - name: Package to zip
         run: |
           dotnet pack -p:Platform=x64
           dotnet pack -p:Platform=ARM64
 
-      - name: Upload x64 To Release
-        uses: svenstaro/upload-release-action@v2
+      
+      - name: Upload Release Asset x64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          repo_token: ${{secrets.GITHUB_TOKEN}}
-          file: Community.PowerToys.Run.Plugin.JetbrainsProjects\bin\JetbrainsProjects_x64.zip
-          asset_name: JetbrainsProjects-${{ github.event.release.tag_name }}-x64.zip
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: Community.PowerToys.Run.Plugin.JetbrainsProjects\bin\JetbrainsProjects_x64.zip
+          asset_name: JetbrainsProjects-${{ github.env.VERSION }}-x64.zip
+          asset_content_type: application/zip
 
-      - name: Upload ARM64 To Release
-        uses: svenstaro/upload-release-action@v2
+      - name: Upload Release Asset ARM64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          repo_token: ${{secrets.GITHUB_TOKEN}}
-          file: Community.PowerToys.Run.Plugin.JetbrainsProjects\bin\JetbrainsProjects_ARM64.zip
-          asset_name: JetbrainsProjects-${{ github.event.release.tag_name }}-arm64.zip
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: Community.PowerToys.Run.Plugin.JetbrainsProjects\bin\JetbrainsProjects_ARM64.zip
+          asset_name: JetbrainsProjects-${{ github.env.VERSION }}-arm64.zip
+          asset_content_type: application/zip
