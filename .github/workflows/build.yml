@@ -1,7 +1,7 @@
 ﻿name: Build on release
 on:
-  release:
-    types: created
+#  release:
+#    types: created
   # manually trigger the workflow
   workflow_dispatch:
     
@@ -33,6 +33,17 @@ jobs:
           dotnet pack -p:Platform=x64
           dotnet pack -p:Platform=ARM64
 
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.env.VERSION }}
+          release_name: v${{ github.env.VERSION }}
+          draft: false
+          prerelease: false
+      
       
       - name: Upload Release Asset x64
         uses: actions/upload-release-asset@v1
