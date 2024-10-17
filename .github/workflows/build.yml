@@ -36,9 +36,8 @@ jobs:
           
       - name: rename zips
         run: |
-          $version = ${{ env.VERSION }}
-          Rename-Item -Path Community.PowerToys.Run.Plugin.JetbrainsProjects\bin\JetbrainsProjects_x64.zip -NewName "JetbrainsProjects-$version-x64.zip"
-          Rename-Item -Path Community.PowerToys.Run.Plugin.JetbrainsProjects\bin\JetbrainsProjects_ARM64.zip -NewName "JetbrainsProjects-$version-arm64.zip"
+          Rename-Item -Path Community.PowerToys.Run.Plugin.JetbrainsProjects\bin\JetbrainsProjects_x64.zip -NewName "JetbrainsProjects-${{ env.VERSION }}-x64.zip"
+          Rename-Item -Path Community.PowerToys.Run.Plugin.JetbrainsProjects\bin\JetbrainsProjects_ARM64.zip -NewName "JetbrainsProjects-${{ env.VERSION }}-arm64.zip"
  
       - uses: ncipollo/release-action@v1
         with:
