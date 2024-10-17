@@ -26,8 +26,7 @@ jobs:
           
       - name: log version
         run: |
-          $version = Get-Content $env:GITHUB_OUTPUT | Select-String -Pattern 'VERSION=(.*)' | ForEach-Object { $_.Matches.Groups[1].Value }
-          echo "Version: $version"
+          echo "Version: ${{ env.VERSION }}"
 
       - name: Package to zip
         run: |
@@ -37,13 +36,13 @@ jobs:
           
       - name: rename zips
         run: |
-          $version = Get-Content $env:GITHUB_OUTPUT | Select-String -Pattern 'VERSION=(.*)' | ForEach-Object { $_.Matches.Groups[1].Value }
+          $version = ${{ env.VERSION }}
           Rename-Item -Path Community.PowerToys.Run.Plugin.JetbrainsProjects\bin\JetbrainsProjects_x64.zip -NewName "JetbrainsProjects-$version-x64.zip"
           Rename-Item -Path Community.PowerToys.Run.Plugin.JetbrainsProjects\bin\JetbrainsProjects_ARM64.zip -NewName "JetbrainsProjects-$version-arm64.zip"
  
       - uses: ncipollo/release-action@v1
         with:
-          tag: v${{ github.env.VERSION }}
+          tag: v${{ env.VERSION }}
           makeLatest: true
           allowUpdates: true
           artifactErrorsFailBuild: true
