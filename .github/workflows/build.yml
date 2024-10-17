@@ -22,7 +22,7 @@ jobs:
       - name: Extract version
         id: get_version
         run: |
-          $jsonContent = Get-Content -Path "plugin.json" -Raw
+          $jsonContent = Get-Content -Path "Community.PowerToys.Run.Plugin.JetbrainsProjects\plugin.json" -Raw
           $jsonObject = $jsonContent | ConvertFrom-Json
           $version = $jsonObject.Version
           echo "VERSION=$version" >> $env:GITHUB_OUTPUT
