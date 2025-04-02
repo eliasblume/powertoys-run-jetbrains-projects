@@ -31,7 +31,12 @@ namespace Community.PowerToys.Run.Plugin.JetbrainsProjects
 
     public class JetbrainsProjects
     {
-        private static readonly string ProgrammsDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Programs");
+
+        private static readonly string[] ProgrammsDirs = [
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "JetBrains"),
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "JetBrains"),
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Programs")
+        ];
 
         private ReadOnlyCollection<Product>? _products = new ReadOnlyCollection<Product>([]);
 
@@ -69,7 +74,7 @@ namespace Community.PowerToys.Run.Plugin.JetbrainsProjects
                     });
                 }
 
-                
+
             }
 
             return products;
@@ -89,21 +94,25 @@ namespace Community.PowerToys.Run.Plugin.JetbrainsProjects
         {
             var installedProducts = new List<JetBrainsProductInfo>();
 
-            if (!Directory.Exists(ProgrammsDir))
+            // Mainly the current user or computer installation
+            foreach (var programsDir in ProgrammsDirs)
             {
-                return installedProducts;
-            }
-
-            var dirs = Directory.GetDirectories(ProgrammsDir);
-            
-            foreach (var dir in dirs)
-            {
-              
-                var product = JetBrainsProgram.ParseProductInfo(dir);
-
-                if (product != null)
+                if (!Directory.Exists(programsDir))
                 {
-                    installedProducts.Add(product);
+                    continue;
+                }
+
+                var dirs = Directory.GetDirectories(programsDir);
+                // jetbrains product directory
+                foreach (var dir in dirs)
+                {
+
+                    var product = JetBrainsProgram.ParseProductInfo(dir);
+
+                    if (product != null)
+                    {
+                        installedProducts.Add(product);
+                    }
                 }
             }
 
@@ -118,7 +127,7 @@ namespace Community.PowerToys.Run.Plugin.JetbrainsProjects
             {
                 projects.AddRange(GetProjectsFromProduct(product));
             }
-            
+
             projects.Sort((x, y) => y.LastOpened.CompareTo(x.LastOpened));
 
             return projects;
@@ -212,7 +221,7 @@ namespace Community.PowerToys.Run.Plugin.JetbrainsProjects
         }
         private string ReplaceUserHome(string path)
         {
-           return path.Replace("$USER_HOME$", Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+            return path.Replace("$USER_HOME$", Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
         }
 
         private string? ExtractCurrentFile(string frameTitle)
@@ -227,5 +236,5 @@ namespace Community.PowerToys.Run.Plugin.JetbrainsProjects
         public JetbrainsProjects() { }
     }
 
-    
+
 }
